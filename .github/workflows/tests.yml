@@ -40,10 +40,10 @@ jobs:
       - name: Install tytanic
         uses: taiki-e/cache-cargo-install-action@v2
         with:
-          tool: tytanic@0.3.1
+          tool: tytanic@0.3.3
 
       - name: Setup typst
-        uses: typst-community/setup-typst@v4
+        uses: typst-community/setup-typst@v5
         with:
           typst-version: ${{ matrix.typst-version }}
 
@@ -60,10 +60,12 @@ jobs:
       - name: Uninstall previous local install
         run: just uninstall
 
+      - name: Show test runner fonts
+        run: tt util fonts --use-system-fonts
+
       - name: Run test suite
         run: |
-          just install
-          tt run --font-path ~/.fonts --no-fail-fast --warnings promote
+          just test
 
       - name: Archive diffs
         uses: actions/upload-artifact@v4
