@@ -909,7 +909,7 @@
           stroke: 0pt,
           radius: 2cm,
           width: 4cm,
-          height: auto,
+          height: 4cm,
           profile-picture,
         )
       ],
